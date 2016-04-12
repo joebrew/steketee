@@ -88,7 +88,7 @@ visualize_bites <- function(df = survival()){
              'Non infectious bites' = round(sum(df$non_infectious_bites)))
   
   # Make scaled
-  if(sum(bites) > 100){
+  if(sum(bites) > 300){
     scaled <- TRUE
   } else{
     scaled <- FALSE
@@ -97,6 +97,9 @@ visualize_bites <- function(df = survival()){
     scaler <- (nchar(sum(bites)) - 2) * 10
     bites <- bites / scaler
   }
+  
+  # Round up
+  bites <- ceiling(bites)
   
   # Subset if necessary
   bites <- bites[bites > 0]
@@ -120,7 +123,8 @@ visualize_bites <- function(df = survival()){
   
    waffle(bites,
          title = the_title,
-         colors = cols)
+         colors = cols,
+         rows = 10)
 }
 
 
