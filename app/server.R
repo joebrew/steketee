@@ -14,7 +14,7 @@ shinyServer(function(input, output) {
     survival(n = as.numeric(input$n), 
              p = as.numeric(input$p), 
              prev = as.numeric(input$prev), 
-             d = as.numeric(input$d))
+             d = 30)#as.numeric(input$d))
   })
 
   output$plot1 <- renderPlot({

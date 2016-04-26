@@ -88,14 +88,17 @@ visualize_bites <- function(df = survival()){
              'Non infectious bites' = round(sum(df$non_infectious_bites)))
   
   # Make scaled
-  if(sum(bites) > 300){
+  if(sum(bites) > 1000){
     scaled <- TRUE
   } else{
     scaled <- FALSE
   }
+  
   if(scaled){
     scaler <- (nchar(sum(bites)) - 2) * 10
     bites <- bites / scaler
+  } else {
+    scaler <- 1
   }
   
   # Round up
@@ -115,16 +118,25 @@ visualize_bites <- function(df = survival()){
   }
   
   if(scaled){
-    the_title <- paste0('1 square = ', scaler, ' bites')
+    the_title <- paste0(scaler, ' bites/square')
   } else {
-    the_title <- 'Bites (1 square = 1 bite)'
-    
+    the_title <- '1 bite/square'
   }
+  # Append breakdown
+  the_title <-
+    paste0(the_title,
+           ' -- ',
+           'Infectious: ', scaler * round(as.numeric(bites[1])),
+           ' / ',
+           'Non-infectious: ', scaler * round(as.numeric(bites[2])))
+  
+
   
    waffle(bites,
          title = the_title,
          colors = cols,
-         rows = 10)
+         rows = 10,
+         size = 0.5)
 }
 
 

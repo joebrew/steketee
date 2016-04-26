@@ -26,10 +26,10 @@ shinyUI(fluidPage(
                   "Human parasitemia rate (%)",
                   min = 0,
                   max = 100,
-                  value = 50),
-      sliderInput("d",
-                  "Days to examine",
-                  min = 1, max = 50, value = 30)
+                  value = 50)#,
+      # sliderInput("d",
+      #             "Days to examine",
+      #             min = 1, max = 50, value = 30)
     ),
 
     # Show a plot of the generated distribution
